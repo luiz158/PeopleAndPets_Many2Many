@@ -2,5 +2,5 @@ package me.afua.demo;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface PersonRepository extends CrudRepository<Person, Long> {
+public interface OwnerRepository extends CrudRepository<Owner, Long> {
 }

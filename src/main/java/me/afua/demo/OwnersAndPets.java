@@ -1,8 +1,6 @@
 package me.afua.demo;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.Set;
 
 @Entity
 public class OwnersAndPets {
@@ -11,13 +9,21 @@ public class OwnersAndPets {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull
-    @ManyToOne
-    private Person owner;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "the_owner_id")
+    private Owner owner;
 
-    @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "the_pet_id")
     private Pet pet;
+
+
+    public OwnersAndPets() {
+    }
+    public OwnersAndPets(Owner owner, Pet pet) {
+        this.owner = owner;
+        this.pet = pet;
+    }
 
     public long getId() {
         return id;
@@ -27,11 +33,11 @@ public class OwnersAndPets {
         this.id = id;
     }
 
-    public Person getOwner() {
+    public Owner getOwner() {
         return owner;
     }
 
-    public void setOwner(Person owner) {
+    public void setOwner(Owner owner) {
         this.owner = owner;
     }
 

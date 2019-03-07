@@ -5,19 +5,22 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Person {
+public class Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String myName;
+    private String ownerName;
 
-    @OneToMany(mappedBy = "pet")
+    @OneToMany(mappedBy = "pet")//, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<OwnersAndPets> pets;
+
+    public Owner() {
+        //pets = new HashSet<>();
+    }
 
 //    @ManyToMany(mappedBy = "owners")
 //    private Set<Pet> pets;
-
 
     public long getId() {
         return id;
@@ -27,12 +30,12 @@ public class Person {
         this.id = id;
     }
 
-    public String getMyName() {
-        return myName;
+    public String getOwnerName() {
+        return ownerName;
     }
 
-    public void setMyName(String myName) {
-        this.myName = myName;
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
     public Set<OwnersAndPets> getPets() {
