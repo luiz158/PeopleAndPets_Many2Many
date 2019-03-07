@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.PostConstruct;
-import java.util.HashSet;
 
 @Controller
 public class PetController {
@@ -18,32 +17,27 @@ public class PetController {
     PetRepository petlist;
 
     @RequestMapping("/")
-    public String index(Model model)
-    {
-
-        model.addAttribute("petlist",petlist.findAll());
-        model.addAttribute("ownerlist",petOwners.findAll());
+    public String index(Model model) {
+        model.addAttribute("petlist", petlist.findAll());
+        model.addAttribute("ownerlist", petOwners.findAll());
         return "index";
     }
 
     @RequestMapping("/addpet")
-    public String addPet(Model model)
-    {
+    public String addPet(Model model) {
         model.addAttribute("aPet", new Pet());
-        model.addAttribute("petowners",petOwners.findAll());
+        model.addAttribute("petowners", petOwners.findAll());
         return "pet";
     }
 
     @RequestMapping("/savepet")
-    public String savePet(@ModelAttribute("aPet") Pet pet, Model model)
-    {
+    public String savePet(@ModelAttribute("aPet") Pet pet, Model model) {
         petlist.save(pet);
         return "redirect:/";
     }
 
     @PostConstruct
-    public void fillTables()
-    {
+    public void fillTables() {
         Person p = new Person();
         p.setMyName("John Smith");
         petOwners.save(p);
@@ -52,7 +46,7 @@ public class PetController {
         p.setMyName("Owen Richards");
         petOwners.save(p);
 
-        p= new Person();
+        p = new Person();
         p.setMyName("Ama Baidoo");
         petOwners.save(p);
     }
