@@ -39,12 +39,9 @@ public class PetController {
                           @RequestParam("owners") long id,//value of html field.
                           Model model) {
         petRepository.save(pet);
-        if(ownerRepository.findById(id).isPresent()){
-            System.out.println("present");
-            ownersAndPetsRepository.save(new OwnersAndPets(ownerRepository.findById(id).get(), pet));
-        } else {
-            System.out.println("not present");
-        }
+        Owner owner = ownerRepository.findById(id).get();
+        OwnersAndPets ownersAndPets = new OwnersAndPets(owner, pet);
+        ownersAndPetsRepository.save(ownersAndPets);
         return "redirect:/";
     }
 

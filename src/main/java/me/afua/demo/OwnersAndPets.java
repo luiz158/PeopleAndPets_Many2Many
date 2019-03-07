@@ -9,12 +9,12 @@ public class OwnersAndPets {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "the_owner_id")
+    @ManyToOne//(fetch = FetchType.EAGER)
+    //@JoinColumn(name = "the_owner_id")
     private Owner owner;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "the_pet_id")
+    @ManyToOne//(fetch = FetchType.EAGER)
+    //@JoinColumn(name = "the_pet_id")
     private Pet pet;
 
 
