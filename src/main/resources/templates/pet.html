@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
     <title>Pet Form</title>
 </head>
 <body>
@@ -9,11 +9,10 @@
     <div class="container">
         <input th:field="*{id}" type="hidden">
         <input th:field="*{petName}" type="text">
-        <select multiple th:field="*{owners}">
+        <select th:field="*{owners}" multiple> <!--adding owner in a 'Set<Person> owner' of Pet class-->
             <option th:each="eachOwner:${petowners}"
                     th:text="${eachOwner.myName}"
                     th:value="${eachOwner.id}">
-
             </option>
         </select>
     </div>
