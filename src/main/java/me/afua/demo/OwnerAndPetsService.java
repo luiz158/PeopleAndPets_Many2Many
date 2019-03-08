@@ -13,7 +13,6 @@ public class OwnerAndPetsService {
     @Autowired
     public OwnerAndPetsService() {
         pairs = new HashSet<>();
-
     }
 
     public Set<OwnersAndPets> getPairs() {
