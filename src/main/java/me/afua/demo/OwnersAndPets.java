@@ -10,16 +10,19 @@ public class OwnersAndPets {
     private long id;
 
     @ManyToOne//(fetch = FetchType.EAGER)
-    //@JoinColumn(name = "the_owner_id")
+    @JoinColumn(name = "owner")
     private Owner owner;
 
     @ManyToOne//(fetch = FetchType.EAGER)
-    //@JoinColumn(name = "the_pet_id")
+    //@JoinColumn(name = "petid")
     private Pet pet;
 
 
     public OwnersAndPets() {
+//        owner = new Owner();
+//        pet = new Pet();
     }
+
     public OwnersAndPets(Owner owner, Pet pet) {
         this.owner = owner;
         this.pet = pet;

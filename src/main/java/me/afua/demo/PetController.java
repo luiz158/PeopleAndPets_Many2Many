@@ -4,10 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 @Controller
 public class PetController {
@@ -21,12 +25,25 @@ public class PetController {
     OwnersAndPetsRepository ownersAndPetsRepository;
 
     @RequestMapping("/")
-    public String index(Model model) {
+    public String index( Model model) {
+        model.addAttribute("petlist", petRepository.findAll());
+        model.addAttribute("ownerlist", ownerRepository.findAll());
+        model.addAttribute("ownersandpetlist", ownersAndPetsRepository.findAll());
+        return "index";
+    }
+
+   /* @RequestMapping("/{id}")
+    public String index2( @PathVariable("id") long id, Model model) {
+        List<OwnersAndPets> result = (ArrayList<OwnersAndPets>) ownersAndPetsRepository.findByOwner_Id(id);
+        for(OwnersAndPets o : result){
+            System.out.println("First Element = " +o.getPet().getPetName());
+        }
+        model.addAttribute("petlistbyowner", result );
         model.addAttribute("petlist", petRepository.findAll());
         model.addAttribute("ownerlist", ownerRepository.findAll());
         return "index";
     }
-
+*/
     @RequestMapping("/addpet")
     public String addPet(Model model) {
         model.addAttribute("aPet", new Pet());
@@ -48,7 +65,6 @@ public class PetController {
     //It works as a DatLoader. It runs one time after the constructor.
     @PostConstruct
     public void fillTables() {
-
         Owner p = new Owner();
         p.setOwnerName("John Smith");
         ownerRepository.save(p);
@@ -60,6 +76,5 @@ public class PetController {
         p = new Owner();
         p.setOwnerName("Ama Baidoo");
         ownerRepository.save(p);
-
     }
 }
