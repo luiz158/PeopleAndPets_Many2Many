@@ -12,11 +12,15 @@ public class Pet {
 
     private String petName;
 
-    @ManyToMany
-    private Set<Person> owners;
+    @OneToMany(mappedBy = "owner")//, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<OwnersAndPets> owners;
+
+//    private
+//    @ManyToMany
+//    private Set<Owner> owners;
 
     public Pet() {
-        owners = new HashSet<>();
+       //owners = new HashSet<>();
     }
 
     public long getId() {
@@ -35,11 +39,19 @@ public class Pet {
         this.petName = petName;
     }
 
-    public Set<Person> getOwners() {
+ //   public Set<Owner> getOwners() {
+ //       return owners;
+ //   }
+
+//    public void setOwners(Set<Owner> owners) {
+//        this.owners = owners;
+//    }
+
+    public Set<OwnersAndPets> getOwners() {
         return owners;
     }
 
-    public void setOwners(Set<Person> owners) {
+    public void setOwners(Set<OwnersAndPets> owners) {
         this.owners = owners;
     }
 }

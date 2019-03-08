@@ -5,49 +5,61 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
 
 @Controller
 public class PetController {
     @Autowired
-    PersonRepository petOwners;
+    OwnerRepository ownerRepository;
 
     @Autowired
-    PetRepository petlist;
+    PetRepository petRepository;
+
+    @Autowired
+    OwnersAndPetsRepository ownersAndPetsRepository;
 
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("petlist", petlist.findAll());
-        model.addAttribute("ownerlist", petOwners.findAll());
+        model.addAttribute("petlist", petRepository.findAll());
+        model.addAttribute("ownerlist", ownerRepository.findAll());
         return "index";
     }
 
     @RequestMapping("/addpet")
     public String addPet(Model model) {
         model.addAttribute("aPet", new Pet());
-        model.addAttribute("petowners", petOwners.findAll());
+        model.addAttribute("petowners", ownerRepository.findAll());
         return "pet";
     }
 
     @RequestMapping("/savepet")
-    public String savePet(@ModelAttribute("aPet") Pet pet, Model model) {
-        petlist.save(pet);
+    public String savePet(@ModelAttribute("aPet") Pet pet, //for object
+                          @RequestParam("owners") long id,//value of html field.
+                          Model model) {
+        petRepository.save(pet);
+        Owner owner = ownerRepository.findById(id).get();
+        OwnersAndPets ownersAndPets = new OwnersAndPets(owner, pet);
+        ownersAndPetsRepository.save(ownersAndPets);
         return "redirect:/";
     }
 
+    //It works as a DatLoader. It runs one time after the constructor.
     @PostConstruct
     public void fillTables() {
-        Person p = new Person();
-        p.setMyName("John Smith");
-        petOwners.save(p);
 
-        p = new Person();
-        p.setMyName("Owen Richards");
-        petOwners.save(p);
+        Owner p = new Owner();
+        p.setOwnerName("John Smith");
+        ownerRepository.save(p);
 
-        p = new Person();
-        p.setMyName("Ama Baidoo");
-        petOwners.save(p);
+        p = new Owner();
+        p.setOwnerName("Owen Richards");
+        ownerRepository.save(p);
+
+        p = new Owner();
+        p.setOwnerName("Ama Baidoo");
+        ownerRepository.save(p);
+
     }
 }
