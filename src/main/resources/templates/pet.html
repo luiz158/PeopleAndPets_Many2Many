@@ -10,7 +10,7 @@
         <input th:field="*{id}" type="hidden">
         <input th:field="*{petName}" type="text">
         <select th:field="*{owners}" multiple> <!--adding owner in a 'Set<Person> owner' of Pet class-->
-            <option th:each="eachOwner:${petowners}"
+            <option th:each="eachOwner:${ownerlist}"
                     th:text="${eachOwner.myName}"
                     th:value="${eachOwner.id}">
             </option>
