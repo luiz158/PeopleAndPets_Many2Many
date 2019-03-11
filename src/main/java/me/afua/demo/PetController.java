@@ -11,28 +11,28 @@ import javax.annotation.PostConstruct;
 @Controller
 public class PetController {
     @Autowired
-    PersonRepository petOwners;
+    PersonRepository personRepository;
 
     @Autowired
-    PetRepository petlist;
+    PetRepository petRepository;
 
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("petlist", petlist.findAll());
-        model.addAttribute("ownerlist", petOwners.findAll());
+        model.addAttribute("petlist", petRepository.findAll());
+        model.addAttribute("ownerlist", personRepository.findAll());
         return "index";
     }
 
     @RequestMapping("/addpet")
     public String addPet(Model model) {
         model.addAttribute("aPet", new Pet());
-        model.addAttribute("petowners", petOwners.findAll());
+        model.addAttribute("ownerlist", personRepository.findAll());
         return "pet";
     }
 
     @RequestMapping("/savepet")
     public String savePet(@ModelAttribute("aPet") Pet pet, Model model) {
-        petlist.save(pet);
+        petRepository.save(pet);
         return "redirect:/";
     }
 
@@ -40,14 +40,14 @@ public class PetController {
     public void fillTables() {
         Person p = new Person();
         p.setMyName("John Smith");
-        petOwners.save(p);
+        personRepository.save(p);
 
         p = new Person();
         p.setMyName("Owen Richards");
-        petOwners.save(p);
+        personRepository.save(p);
 
         p = new Person();
         p.setMyName("Ama Baidoo");
-        petOwners.save(p);
+        personRepository.save(p);
     }
 }
