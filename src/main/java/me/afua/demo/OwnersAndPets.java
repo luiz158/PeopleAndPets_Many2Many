@@ -9,18 +9,15 @@ public class OwnersAndPets {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne//(fetch = FetchType.EAGER)
-    @JoinColumn(name = "owner")
+    @ManyToOne//(fetch = FetchType.EAGER)//@JoinColumn(name = "owner")
     private Owner owner;
 
-    @ManyToOne//(fetch = FetchType.EAGER)
-    //@JoinColumn(name = "petid")
+    @ManyToOne//(fetch = FetchType.EAGER)//@JoinColumn(name = "petid")
     private Pet pet;
 
-
     public OwnersAndPets() {
-//        owner = new Owner();
-//        pet = new Pet();
+        owner = new Owner();
+        pet = new Pet();
     }
 
     public OwnersAndPets(Owner owner, Pet pet) {

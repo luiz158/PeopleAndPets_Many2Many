@@ -13,14 +13,11 @@ public class Owner {
     private String ownerName;
 
     @OneToMany(mappedBy = "pet")//, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<OwnersAndPets> pets;
+    private Set<OwnersAndPets> ownerAndPets;
 
     public Owner() {
-        //pets = new HashSet<>();
+        ownerAndPets = new HashSet<>();
     }
-
-//    @ManyToMany(mappedBy = "owners")
-//    private Set<Pet> pets;
 
     public long getId() {
         return id;
@@ -38,11 +35,11 @@ public class Owner {
         this.ownerName = ownerName;
     }
 
-    public Set<OwnersAndPets> getPets() {
-        return pets;
+    public Set<OwnersAndPets> getOwnerAndPets() {
+        return ownerAndPets;
     }
 
-    public void setPets(Set<OwnersAndPets> pets) {
-        this.pets = pets;
+    public void setOwnerAndPets(Set<OwnersAndPets> ownerAndPets) {
+        this.ownerAndPets = ownerAndPets;
     }
 }
