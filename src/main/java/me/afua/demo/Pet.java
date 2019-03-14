@@ -1,6 +1,7 @@
 package me.afua.demo;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,7 +11,8 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String petName;
+    @NotNull
+    private String name;
 
     @ManyToMany
     private Set<Person> owners;
@@ -27,12 +29,12 @@ public class Pet {
         this.id = id;
     }
 
-    public String getPetName() {
-        return petName;
+    public String getName() {
+        return name;
     }
 
-    public void setPetName(String petName) {
-        this.petName = petName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<Person> getOwners() {

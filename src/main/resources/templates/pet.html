@@ -5,14 +5,14 @@
     <title>Pet Form</title>
 </head>
 <body>
-<form method="post" th:action="@{/savepet}" th:object="${aPet}">
+<form method="post" th:action="@{/processpet}" th:object="${pet}">
     <div class="container">
         <input th:field="*{id}" type="hidden">
-        <input th:field="*{petName}" type="text">
+        <input th:field="*{name}" type="text">
         <select th:field="*{owners}" multiple> <!--adding owner in a 'Set<Person> owner' of Pet class-->
-            <option th:each="eachOwner:${ownerlist}"
-                    th:text="${eachOwner.myName}"
-                    th:value="${eachOwner.id}">
+            <option th:each="owner:${people}"
+                    th:text="${owner.name}"
+                    th:value="${owner.id}">
             </option>
         </select>
     </div>

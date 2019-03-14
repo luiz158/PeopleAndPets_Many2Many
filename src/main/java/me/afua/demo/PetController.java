@@ -18,37 +18,38 @@ public class PetController {
 
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("petlist", petRepository.findAll());
-        model.addAttribute("ownerlist", personRepository.findAll());
+        model.addAttribute("pets", petRepository.findAll());
+        model.addAttribute("people", personRepository.findAll());
         return "index";
     }
 
     @RequestMapping("/addpet")
     public String addPet(Model model) {
-        model.addAttribute("aPet", new Pet());
-        model.addAttribute("ownerlist", personRepository.findAll());
+        model.addAttribute("pet", new Pet());
+        model.addAttribute("people", personRepository.findAll());
         return "pet";
     }
 
-    @RequestMapping("/savepet")
-    public String savePet(@ModelAttribute("aPet") Pet pet,
+    @RequestMapping("/processpet")
+    public String savePet(@ModelAttribute("pet") Pet pet,
                           Model model) {
         petRepository.save(pet);
         return "redirect:/";
     }
 
+    //It run once in the class
     @PostConstruct
     public void fillTables() {
         Person p = new Person();
-        p.setMyName("John Smith");
+        p.setName("John Smith");
         personRepository.save(p);
 
         p = new Person();
-        p.setMyName("Owen Richards");
+        p.setName("Owen Richards");
         personRepository.save(p);
 
         p = new Person();
-        p.setMyName("Ama Baidoo");
+        p.setName("Ama Baidoo");
         personRepository.save(p);
     }
 }
