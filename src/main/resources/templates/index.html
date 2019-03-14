@@ -15,6 +15,15 @@
             <p th:text="${eachPet.petName}"></p>
         </div>
     </div>
+
+    <h1>Owners and their Pets</h1>
+    <div th:each="pet:${petlist}">
+        <h2 th:text="${pet.petName}"></h2>
+        <h3 th:text="${#lists.size(pet.owners)>0}?'My Owners':'No Owners for me'"></h3>
+        <div th:each="eachOwner:${pet.owners}">
+            <p th:text="${eachOwner.myName}"></p>
+        </div>
+    </div>
 </div>
 </body>
 </html>

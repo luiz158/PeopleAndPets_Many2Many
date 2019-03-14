@@ -31,7 +31,8 @@ public class PetController {
     }
 
     @RequestMapping("/savepet")
-    public String savePet(@ModelAttribute("aPet") Pet pet, Model model) {
+    public String savePet(@ModelAttribute("aPet") Pet pet,
+                          Model model) {
         petRepository.save(pet);
         return "redirect:/";
     }
