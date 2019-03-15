@@ -16,8 +16,8 @@ public class PeoplePets {
     private Pet pet;
 
     public PeoplePets() {
-//        owner = new Person();
-//        pet = new Pet();
+        owner = new Person();
+        pet = new Pet();
     }
 
     public PeoplePets(Person owner, Pet pet) {

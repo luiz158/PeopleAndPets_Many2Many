@@ -35,13 +35,15 @@ public class PetController {
 
     @RequestMapping("/processpet")
     public String savePet(@ModelAttribute("pet") Pet pet, //coming from view's object
-                          @RequestParam("peoplePets") long id,//coming from field of view's object.
-                          Model model) {
-        Person person = personRepository.findById(id).get();
-        PeoplePets peoplePets = new PeoplePets(person, pet);
-        petRepository.save(pet);
-        peoplePetsRepository.save(peoplePets);
-        return "redirect:/";//+id;
+                          @RequestParam("peoplePets") long... ids //coming from field of view's object.
+                          ) {
+        for(long id : ids){
+            Person person = personRepository.findById(id).get();
+            PeoplePets peoplePets = new PeoplePets(person, pet);
+            petRepository.save(pet);
+            peoplePetsRepository.save(peoplePets);
+        }
+        return "redirect:/";
     }
 
     //It works as a DataLoader. It runs once after the constructor.

@@ -15,11 +15,12 @@ public class Pet {
     @NotNull
     private String name;
 
+    @NotNull
     @OneToMany(mappedBy = "owner")//, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<PeoplePets> peoplePets;
 
     public Pet() {
-//        peoplePets = new HashSet<>();
+        peoplePets = new HashSet<>();
     }
 
     public long getId() {
