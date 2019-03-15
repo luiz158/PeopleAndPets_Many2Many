@@ -55,3 +55,8 @@ PetController.java
           </div>
       </div>
   ```
+  
+  [Many To Many] (https://hellokoding.com/jpa-one-to-many-relationship-mapping-example-with-spring-boot-maven-and-mysql/)
+  
+  [Many To Many] (https://www.callicoder.com/hibernate-spring-boot-jpa-one-to-many-mapping-example/)
+  
