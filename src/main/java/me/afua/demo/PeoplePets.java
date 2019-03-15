@@ -9,10 +9,10 @@ public class PeoplePets {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne//(fetch = FetchType.EAGER)//@JoinColumn(name = "owner_id")
+    @ManyToOne
     private Person owner;
 
-    @ManyToOne//(fetch = FetchType.EAGER)//@JoinColumn(name = "pet_id")
+    @ManyToOne
     private Pet pet;
 
     public PeoplePets() {

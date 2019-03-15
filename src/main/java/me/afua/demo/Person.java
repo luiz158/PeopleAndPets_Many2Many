@@ -12,7 +12,7 @@ public class Person {
 
     private String name;
 
-    @OneToMany(mappedBy = "pet")//, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "pet")
     private Set<PeoplePets> peoplePets;
 
     public Person() {

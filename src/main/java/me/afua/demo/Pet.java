@@ -16,7 +16,7 @@ public class Pet {
     private String name;
 
     @NotNull
-    @OneToMany(mappedBy = "owner")//, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "owner")
     private Set<PeoplePets> peoplePets;
 
     public Pet() {
