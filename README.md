@@ -1,4 +1,4 @@
-# PeopleAndPets_Many2Many
+# PeoplePets_Many2Many
 
 ## Important annotations
 

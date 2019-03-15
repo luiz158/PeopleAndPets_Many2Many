@@ -3,24 +3,24 @@ package me.afua.demo;
 import javax.persistence.*;
 
 @Entity
-public class OwnersAndPets {
+public class PeoplePets {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne//(fetch = FetchType.EAGER)//@JoinColumn(name = "owner")
-    private Owner owner;
+    @ManyToOne//(fetch = FetchType.EAGER)//@JoinColumn(name = "owner_id")
+    private Person owner;
 
-    @ManyToOne//(fetch = FetchType.EAGER)//@JoinColumn(name = "petid")
+    @ManyToOne//(fetch = FetchType.EAGER)//@JoinColumn(name = "pet_id")
     private Pet pet;
 
-    public OwnersAndPets() {
-        owner = new Owner();
-        pet = new Pet();
+    public PeoplePets() {
+//        owner = new Person();
+//        pet = new Pet();
     }
 
-    public OwnersAndPets(Owner owner, Pet pet) {
+    public PeoplePets(Person owner, Pet pet) {
         this.owner = owner;
         this.pet = pet;
     }
@@ -33,11 +33,11 @@ public class OwnersAndPets {
         this.id = id;
     }
 
-    public Owner getOwner() {
+    public Person getOwner() {
         return owner;
     }
 
-    public void setOwner(Owner owner) {
+    public void setOwner(Person owner) {
         this.owner = owner;
     }
 

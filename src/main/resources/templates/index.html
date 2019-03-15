@@ -5,33 +5,14 @@
     <title>Pets and owners</title>
 </head>
 <body>
-
-<div align="center" class="container">
-    <a href="/addpet">Add a pet</a>
+<div align = "center" class="container">
+    <a href="/addpet">Add Pet</a>
     <h1>Pets and their Owners</h1>
-    <div th:each="owner : ${owners}">
-        <h2 th:text="${owner.ownerName}"></h2>
-        <h3 th:text="${#lists.size(petsbyowner)>0}?'My Pets':'No pets for me'"></h3>
-        <div th:each="petbyowner :${petsbyowner}">
-            <p th:text="${petbyowner.pet.petName}"></p>
-        </div>
-    </div>
-
-    <div th:each="owner : ${owners}">
-        <h2 th:text="${owner.ownerName}"></h2>
-        <h3 th:text="${#lists.size(owner.ownerAndPets)>0}?'My Pets':'No pets for me'"></h3>
-        TO-DO: need to get the pet of owner and show here
-        <div th:each="eachPet:${owner.ownerAndPets}">
-            <p th:text="${eachPet.pet.petName}"></p>
-        </div>
-    </div>
-
-    <h1>Owners and their Pets</h1>[[${ownersandpets}]]
-    <div th:each="pet : ${pets}">
-        <h2 th:text="${pet.petName}"></h2>
-        <h3 th:text="${#lists.size(pet.petAndOwners)>0}?'My Owners':'No owner for me'"></h3>
-        <div th:each="eachOwner:${pet.petAndOwners}">
-            <p th:text="${eachOwner.owner.ownerName}"></p>
+    <div th:each="owner : ${people}">
+        <h2 th:text="${owner.name}"></h2>
+        <h3 th:text="${#lists.size(peoplepets.findAllByOwner_Id(owner.id))>0}?'My Pets':'No pets for me'"></h3>
+        <div th:each="personpets : ${peoplepets.findAllByOwner_Id(owner.id)}">
+            <p th:text="${personpets.pet.name}"></p>
         </div>
     </div>
 </div>

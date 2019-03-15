@@ -6,8 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Pet {
-
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -15,10 +14,10 @@ public class Pet {
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "owner")//, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "pet")//, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<PeoplePets> peoplePets;
 
-    public Pet() {
+    public Person() {
 //        peoplePets = new HashSet<>();
     }
 
