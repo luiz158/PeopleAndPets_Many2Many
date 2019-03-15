@@ -37,6 +37,7 @@ public class PetController {
     public String savePet(@ModelAttribute("pet") Pet pet, //coming from view's object
                           @RequestParam("peoplePets") long... ids //coming from field of view's object.
                           ) {
+        //for multiple selection
         for(long id : ids){
             Person person = personRepository.findById(id).get();
             PeoplePets peoplePets = new PeoplePets(person, pet);
