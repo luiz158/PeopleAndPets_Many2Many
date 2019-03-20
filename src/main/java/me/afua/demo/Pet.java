@@ -16,7 +16,7 @@ public class Pet {
     private String name;
 
     @NotNull
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "pet")//owner")
     private Set<PeoplePets> peoplePets;
 
     public Pet() {

@@ -12,7 +12,7 @@ public class Person {
 
     private String name;
 
-    @OneToMany(mappedBy = "pet")
+    @OneToMany(mappedBy = "owner") //pet")
     private Set<PeoplePets> peoplePets;
 
     public Person() {
