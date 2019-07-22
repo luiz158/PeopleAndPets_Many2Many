@@ -1,7 +1,6 @@
 package me.afua.demo;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,12 +11,8 @@ public class Person {
 
     private String personName;
 
-    @ManyToMany(mappedBy = "owners")
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Pet> pets;
-
-    public Person() {
-        pets = new HashSet<>();
-    }
 
     public long getId() {
         return id;

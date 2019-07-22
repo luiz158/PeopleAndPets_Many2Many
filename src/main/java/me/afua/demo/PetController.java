@@ -28,8 +28,10 @@ public class PetController {
     @RequestMapping("/addpet")
     public String addPet(Model model)
     {
-        model.addAttribute("pet", new Pet());
+
         model.addAttribute("people", personRepository.findAll());
+
+        model.addAttribute("pet", new Pet());
         return "pet";
     }
 

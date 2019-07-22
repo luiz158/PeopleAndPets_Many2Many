@@ -9,8 +9,8 @@
                     <div class="container">
                         <input th:field="*{id}" type="hidden">
                         <input th:field="*{petName}" type="text">
-                        <select th:field="*{owners}" multiple> <!--from 'Set<Person> owners' of Pet class-->
-                            <!--below 'people' is from '"people", personRepository.findAll()' of Controller-->
+
+                        <select th:field="*{person}" multiple>
                             <option th:each ="eachOwner:${people}"
                                     th:text="${eachOwner.personName}"
                                     th:value="${eachOwner.id}">

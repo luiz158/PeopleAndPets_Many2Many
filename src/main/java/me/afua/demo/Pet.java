@@ -12,11 +12,11 @@ public class Pet {
 
     private String petName;
 
-    @ManyToMany
-    private Set<Person> owners;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Person person;
 
-    public Pet() {
-        owners = new HashSet<>();
+    public Pet(){
+        person = new Person();
     }
 
     public long getId() {
@@ -35,11 +35,11 @@ public class Pet {
         this.petName = petName;
     }
 
-    public Set<Person> getOwners() {
-        return owners;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setOwners(Set<Person> owners) {
-        this.owners = owners;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }
