@@ -5,12 +5,16 @@
     <title>Pet Form</title>
 </head>
 <body>
-        <form th:action="@{/savepet}" th:object="${aPet}" method="post">
+        <form th:action="@{/processpet}" th:object="${pet}" method="post">
                     <div class="container">
-                        <input type="hidden" th:field="*{id}">
-                        <input type="text" th:field="*{petName}">
-                        <select th:field="*{owners}" multiple>
-                            <option th:each ="eachOwner:${petowners}" th:value="${eachOwner.id}" th:text="${eachOwner.myName}"></option>
+                        <input th:field="*{id}" type="hidden">
+                        <input th:field="*{petName}" type="text">
+                        <select th:field="*{owners}" multiple> <!--from 'Set<Person> owners' of Pet class-->
+                            <!--below 'people' is from '"people", personRepository.findAll()' of Controller-->
+                            <option th:each ="eachOwner:${people}"
+                                    th:text="${eachOwner.personName}"
+                                    th:value="${eachOwner.id}">
+                            </option>
                         </select>
                     </div>
 

@@ -10,7 +10,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String myName;
+    private String personName;
 
     @ManyToMany(mappedBy = "owners")
     private Set<Pet> pets;
@@ -27,12 +27,12 @@ public class Person {
         this.id = id;
     }
 
-    public String getMyName() {
-        return myName;
+    public String getPersonName() {
+        return personName;
     }
 
-    public void setMyName(String myName) {
-        this.myName = myName;
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
 
     public Set<Pet> getPets() {
