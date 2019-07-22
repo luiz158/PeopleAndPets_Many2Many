@@ -22,7 +22,8 @@
 ```LAZY``` - loads the related objects only if they are accessed for the first time
 
 
-## This project contains two branches (plus master):
+## This project contains three branches (plus master):
+* One2Many_Redo
 
 * One2Many
 
@@ -30,6 +31,6 @@
 
 The master branch is the default project which is the same as Many2Many. It illustrates how to create a ManyToMany relationship where one pet has many owners and each owner can own many pets.
 
-The One2Many branch illusrates how to work around the complications of the Many2Many relationship by creating two one2many relationships.
+The One2Many_Redo branch illusrates how to work around the complications of the Many2Many relationship by creating two one2many relationships.
 
-use ```git checkout One2Many``` to checkout that branch and observe how the project changes when designing the database this way.
+use ```git checkout One2Many_Redo``` to checkout that branch and observe how the project changes when designing the database this way.
