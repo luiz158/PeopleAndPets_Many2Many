@@ -22,7 +22,7 @@
 ```LAZY``` - loads the related objects only if they are accessed for the first time
 
 
-## This project contains two branches (plus master):
+## This project contains three branches (plus master):
 * One2Many_Redo
 
 * One2Many
