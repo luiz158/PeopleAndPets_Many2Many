@@ -3,57 +3,79 @@ package me.afua.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.annotation.PostConstruct;
-import java.util.HashSet;
+import javax.validation.Valid;
 
 @Controller
 public class PetController {
-    @Autowired
-    PersonRepository petOwners;
 
     @Autowired
-    PetRepository petlist;
+    PersonRepository personRepository;
+
+    @Autowired
+    PetRepository petRepository;
 
     @RequestMapping("/")
     public String index(Model model)
     {
-
-        model.addAttribute("petlist",petlist.findAll());
-        model.addAttribute("ownerlist",petOwners.findAll());
-        return "index";
+        model.addAttribute("pets", petRepository.findAll());
+        model.addAttribute("owners", personRepository.findAll());
+        return "list";
     }
 
-    @RequestMapping("/addpet")
-    public String addPet(Model model)
+    @GetMapping("/add")
+    public String petForm(Model model)
     {
-        model.addAttribute("aPet", new Pet());
-        model.addAttribute("petowners",petOwners.findAll());
-        return "pet";
+        model.addAttribute("pet", new Pet());
+        model.addAttribute("owners", personRepository.findAll());
+        return "petform";
     }
 
-    @RequestMapping("/savepet")
-    public String savePet(@ModelAttribute("aPet") Pet pet, Model model)
+    @PostMapping("/process")
+    public String processForm(@Valid Pet pet, BindingResult result,
+                          Model model)
     {
-        petlist.save(pet);
+        if (result.hasErrors()){
+            model.addAttribute("owners", personRepository.findAll());
+            return "petform";
+        }
+        petRepository.save(pet);
         return "redirect:/";
     }
 
-    @PostConstruct
-    public void fillTables()
-    {
-        Person p = new Person();
-        p.setMyName("John Smith");
-        petOwners.save(p);
-
-        p = new Person();
-        p.setMyName("Owen Richards");
-        petOwners.save(p);
-
-        p= new Person();
-        p.setMyName("Ama Baidoo");
-        petOwners.save(p);
+    @GetMapping("/addowner")
+    public String ownerForm(Model model){
+        model.addAttribute("person", new Person());
+        return "owner";
     }
+
+    @PostMapping("/processowner")
+    public String saveOwner(@Valid Person person, BindingResult result,
+                            Model model){
+        if (result.hasErrors()){
+            return "owner";
+        }
+        personRepository.save(person);
+        return "redirect:/";
+    }
+
+//    @PostConstruct
+//    public void fillTables()
+//    {
+//        Person p = new Person();
+//        p.setPersonName("John Smith");
+//        personRepository.save(p);
+//
+//        p = new Person();
+//        p.setPersonName("Owen Richards");
+//        personRepository.save(p);
+//
+//        p= new Person();
+//        p.setPersonName("Ama Baidoo");
+//        personRepository.save(p);
+//    }
 }
