@@ -25,7 +25,7 @@ public class PetController {
         model.addAttribute("pets", petRepository.findAll());
         model.addAttribute("people", personRepository.findAll());
         model.addAttribute("peoplepets", peoplePetsRepository);
-        return "list";
+        return "index";
     }
 
     @GetMapping("/addpet")
@@ -40,6 +40,7 @@ public class PetController {
     public String processForm(@ModelAttribute("pet") Pet pet,
                               @RequestParam("peoplePets") long... ids)
     {
+        // for multiple selection
         for (long id : ids){
             Person person = personRepository.findById(id).get();
             PeoplePets peoplePets = new PeoplePets(person, pet);

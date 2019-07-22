@@ -13,7 +13,7 @@ public class Pet {
 
     private String petName;
 
-    @OneToMany(mappedBy = "pet.html")
+    @OneToMany(mappedBy = "pet")
     private Set<PeoplePets> peoplePets;
 
     public Pet(){

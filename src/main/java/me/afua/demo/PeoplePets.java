@@ -11,11 +11,9 @@ public class PeoplePets {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull
     @ManyToOne
     private Person owner;
 
-    @NotNull
     @ManyToOne
     private Pet pet;
 
