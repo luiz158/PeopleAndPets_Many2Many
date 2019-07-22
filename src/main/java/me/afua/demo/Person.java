@@ -1,7 +1,6 @@
 package me.afua.demo;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -10,14 +9,10 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String myName;
+    private String personName;
 
-    @OneToMany(mappedBy = "pet")
-    private Set<OwnersAndPets> pets;
-
-//    @ManyToMany(mappedBy = "owners")
-//    private Set<Pet> pets;
-
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Pet> pets;
 
     public long getId() {
         return id;
@@ -27,19 +22,19 @@ public class Person {
         this.id = id;
     }
 
-    public String getMyName() {
-        return myName;
+    public String getPersonName() {
+        return personName;
     }
 
-    public void setMyName(String myName) {
-        this.myName = myName;
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
 
-    public Set<OwnersAndPets> getPets() {
+    public Set<Pet> getPets() {
         return pets;
     }
 
-    public void setPets(Set<OwnersAndPets> pets) {
+    public void setPets(Set<Pet> pets) {
         this.pets = pets;
     }
 }

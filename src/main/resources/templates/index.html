@@ -7,13 +7,13 @@
 <body>
     <div class="container">
         <h1>Pets and their Owners</h1>
-        <div th:each="eachOwner:${ownerlist}">
-            <h2 th:text="${eachOwner.myName}"></h2>
+        <div th:each="eachOwner:${people}">
+            <h2 th:text="${eachOwner.personName}"></h2>
 
             <h3 th:text="${#lists.size(eachOwner.pets)>0}?'My Pets':'No pets for me'"></h3>
-                <div th:each="ownerPet:${eachOwner.pets}">
-                    <p th:text="${ownerPet.pet.petName}"
-                       th:value="${ownerPet.pet.id}"></p>
+                <div th:each="eachPet:${eachOwner.pets}">
+                    <p th:text="${eachPet.petName}"
+                       th:value="${eachPet.id}"></p>
                 </div>
         </div>
     </div>
