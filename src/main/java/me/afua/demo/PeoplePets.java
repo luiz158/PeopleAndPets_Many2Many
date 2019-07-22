@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-public class OwnersAndPets {
+public class PeoplePets {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,6 +18,16 @@ public class OwnersAndPets {
     @NotNull
     @ManyToOne
     private Pet pet;
+
+    public PeoplePets(){
+        owner = new Person();
+        pet = new Pet();
+    }
+
+    public PeoplePets(Person owner, Pet pet){
+        this.owner = owner;
+        this.pet = pet;
+    }
 
     public long getId() {
         return id;

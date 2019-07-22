@@ -13,8 +13,12 @@ public class Pet {
 
     private String petName;
 
-    @OneToMany(mappedBy = "owner")
-    private Set<OwnersAndPets> owners;
+    @OneToMany(mappedBy = "pet.html")
+    private Set<PeoplePets> peoplePets;
+
+    public Pet(){
+        peoplePets = new HashSet<>();
+    }
 
     public long getId() {
         return id;
@@ -32,11 +36,11 @@ public class Pet {
         this.petName = petName;
     }
 
-    public Set<OwnersAndPets> getOwners() {
-        return owners;
+    public Set<PeoplePets> getPeoplePets() {
+        return peoplePets;
     }
 
-    public void setOwners(Set<OwnersAndPets> owners) {
-        this.owners = owners;
+    public void setPeoplePets(Set<PeoplePets> peoplePets) {
+        this.peoplePets = peoplePets;
     }
 }

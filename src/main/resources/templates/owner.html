@@ -1,30 +1,31 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Owner Form</title>
-</head>
-<body>
-<h1>Owner Form</h1>
-<form action="#"
-      th:action="@{/processowner}"
-      th:object="${person}"
-      method="post">
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Owner Form</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Owner Form</h1>-->
 
-    <div class="container">
-        <input type="hidden" th:field="*{id}"/>
+<!--<form action="#"-->
+<!--      th:action="@{/processowner}"-->
+<!--      th:object="${person}"-->
+<!--      method="post">-->
 
-        Owner: <input type="text" th:field="*{personName}"/>
+<!--    <div class="container">-->
+<!--        <input type="hidden" th:field="*{id}"/>-->
 
-        <span th:if="${#fields.hasErrors('personName')}"
-              th:errors="*{personName}"></span>
+<!--        Owner: <input type="text" th:field="*{personName}"/>-->
 
-        <br>
-    </div>
+<!--        <span th:if="${#fields.hasErrors('personName')}"-->
+<!--              th:errors="*{personName}"></span>-->
 
-    <input type="submit" value="Submit">
+<!--        <br>-->
+<!--    </div>-->
 
-</form>
+<!--    <input type="submit" value="Submit">-->
 
-</body>
-</html>
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->

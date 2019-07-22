@@ -7,7 +7,7 @@
 <body>
 <h1>Pet Form</h1>
 <form action="#"
-      th:action="@{/process}"
+      th:action="@{/processpet}"
       th:object="${pet}"
       method="post">
 
@@ -16,11 +16,12 @@
 
         <input type="text" th:field="*{petName}">
 
-        <select th:field="*{owners}" multiple>
-            <option th:each="option : ${owners}"
-                    th:value="${option.id}">
-                [[${option.personName}]]</option>
-        </select><br>
+        <select th:field="*{peoplePets}" multiple>
+            <option th:each="owner : ${people}"
+                    th:value="${owner.id}"
+                    th:text="${owner.personName}">
+            </option>
+        </select>
     </div>
 
     <button type="submit">Save Pet</button>
