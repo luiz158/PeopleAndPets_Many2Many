@@ -5,14 +5,18 @@
     <title>Pets and owners</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Pets and their Owners</h1>
+    <div class="container" align="center">
         <a href="/addpet">Add a Pet</a>
-        <div th:each="owner:${people}">
+        <h1>Pets and their Owners</h1>
+
+        <div th:each="owner : ${people}">
+
             <h2 th:text="${owner.personName}"></h2>
-            <h3 th:text="${#lists.size(owner.pets)>0}?'My Pets':'No pets for me'"></h3>
-                <div th:each="eachPet:${owner.pets}">
-                    <p th:text="${eachPet.petName}"></p>
+
+            <h3 th:text="${#lists.size(peoplepets.findAllByOwner_Id(owner.id))>0}?'My Pets':'No pets for me'"></h3>
+
+                <div th:each="personpets : ${peoplepets.findAllByOwner_Id(owner.id)}">
+                    <p th:text="${personpets.pet.petName}"></p>
                 </div>
         </div>
     </div>

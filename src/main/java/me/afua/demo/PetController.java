@@ -3,29 +3,31 @@ package me.afua.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 
 @Controller
 public class PetController {
+
     @Autowired
     PersonRepository personRepository;
 
-    @Autowired
     PetRepository petRepository;
+
+    @Autowired
+    PeoplePetsRepository peoplePetsRepository;
 
     @RequestMapping("/")
     public String index(Model model)
     {
-
         model.addAttribute("pets", petRepository.findAll());
         model.addAttribute("people", personRepository.findAll());
+        model.addAttribute("peoplepets", peoplePetsRepository);
         return "index";
     }
 
-    @RequestMapping("/addpet")
+    @GetMapping("/addpet")
     public String addPet(Model model)
     {
         model.addAttribute("pet", new Pet());
@@ -33,27 +35,47 @@ public class PetController {
         return "pet";
     }
 
-    @RequestMapping("/processpet")
-    public String savePet(@ModelAttribute("pet") Pet pet,
-                          Model model)
+
+    @PostMapping("/processpet")
+    public String processForm(@ModelAttribute("pet") Pet pet,
+                              @RequestParam("peoplePets") long... ids)
     {
-        petRepository.save(pet);
+        // for multiple selection
+        for (long id : ids){
+            Person person = personRepository.findById(id).get();
+            PeoplePets peoplePets = new PeoplePets(person, pet);
+            petRepository.save(pet);
+            peoplePetsRepository.save(peoplePets);
+        }
         return "redirect:/";
     }
+
+//    @GetMapping("/addowner")
+//    public String ownerForm(Model model){
+//        model.addAttribute("person", new Person());
+//        return "owner";
+//    }
+//
+//    @PostMapping("/processowner")
+//    public String saveOwner(@Valid Person person, Model model)
+//    {
+//        personRepository.save(person);
+//        return "redirect:/";
+//    }
 
     @PostConstruct
     public void fillTables()
     {
-        Person p = new Person();
-        p.setPersonName("John Smith");
-        personRepository.save(p);
+        Person person = new Person();
+        person.setPersonName("Graham Norton");
+        personRepository.save(person);
 
-        p = new Person();
-        p.setPersonName("Owen Richards");
-        personRepository.save(p);
+        person = new Person();
+        person.setPersonName("Michael McIntyre");
+        personRepository.save(person);
 
-        p= new Person();
-        p.setPersonName("Ama Baidoo");
-        personRepository.save(p);
+        person= new Person();
+        person.setPersonName("Gary Barlow");
+        personRepository.save(person);
     }
 }

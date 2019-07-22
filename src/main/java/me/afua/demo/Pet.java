@@ -6,17 +6,18 @@ import java.util.Set;
 
 @Entity
 public class Pet {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String petName;
 
-    @ManyToMany
-    private Set<Person> owners;
+    @OneToMany(mappedBy = "pet")
+    private Set<PeoplePets> peoplePets;
 
-    public Pet() {
-        owners = new HashSet<>();
+    public Pet(){
+        peoplePets = new HashSet<>();
     }
 
     public long getId() {
@@ -35,11 +36,11 @@ public class Pet {
         this.petName = petName;
     }
 
-    public Set<Person> getOwners() {
-        return owners;
+    public Set<PeoplePets> getPeoplePets() {
+        return peoplePets;
     }
 
-    public void setOwners(Set<Person> owners) {
-        this.owners = owners;
+    public void setPeoplePets(Set<PeoplePets> peoplePets) {
+        this.peoplePets = peoplePets;
     }
 }
