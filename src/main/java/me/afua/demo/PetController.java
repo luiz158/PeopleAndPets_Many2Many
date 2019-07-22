@@ -13,6 +13,7 @@ public class PetController {
     @Autowired
     PersonRepository personRepository;
 
+    @Autowired
     PetRepository petRepository;
 
     @Autowired
@@ -21,9 +22,10 @@ public class PetController {
     @RequestMapping("/")
     public String index(Model model)
     {
-        model.addAttribute("pets", petRepository.findAll());
         model.addAttribute("people", personRepository.findAll());
-        model.addAttribute("peoplepets", peoplePetsRepository);
+
+        model.addAttribute("pets", petRepository.findAll());
+        model.addAttribute("peoplePets", peoplePetsRepository);
         return "index";
     }
 

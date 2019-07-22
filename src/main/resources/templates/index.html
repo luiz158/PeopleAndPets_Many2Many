@@ -13,9 +13,9 @@
 
             <h2 th:text="${owner.personName}"></h2>
 
-            <h3 th:text="${#lists.size(peoplepets.findAllByOwner_Id(owner.id))>0}?'My Pets':'No pets for me'"></h3>
+            <h3 th:text="${#lists.size(peoplePets.findAllByOwner_Id(owner.id))>0}?'My Pets':'No pets for me'"></h3>
 
-                <div th:each="personpets : ${peoplepets.findAllByOwner_Id(owner.id)}">
+                <div th:each="personpets : ${peoplePets.findAllByOwner_Id(owner.id)}">
                     <p th:text="${personpets.pet.petName}"></p>
                 </div>
         </div>
