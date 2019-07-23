@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 
 @Controller
 public class PetController {
@@ -40,15 +41,22 @@ public class PetController {
 
     @PostMapping("/processpet")
     public String processForm(@ModelAttribute("pet") Pet pet,
-                              @RequestParam("peoplePets") long... ids)
+                              @RequestParam("peoplePets") ArrayList<Long> ids) // "long... ids" works too
     {
         // for multiple selection
         for (long id : ids){
             Person person = personRepository.findById(id).get();
+            // print for testing purpose
+            System.out.println("person with ID " + id + " is " + person.getPersonName());
+
             PeoplePets peoplePets = new PeoplePets(person, pet);
+
             petRepository.save(pet);
             peoplePetsRepository.save(peoplePets);
         }
+
+//        petRepository.save(pet);
+
         return "redirect:/";
     }
 
